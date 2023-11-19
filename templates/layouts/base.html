@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+    Databetes || {% block title %} {% endblock title %}
+    </title>
+    {% include 'partials/_css.html' %}
+    {% block css %}{% endblock css %}
+</head>
+    <body>
+        {% include 'includes/header.html' %}
+        {% block content %}{% endblock content %}
+        {% include 'partials/_js.html' %}
+        {% include 'partials/_swal.html' %}
+        {% block js %}{% endblock js %}
+    </body>
+</html>

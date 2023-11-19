@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Signup{% endblock title %}
+
+{% block content %}
+<section class="login_section">
+    <div class="container">
+        <form method="post" class="login_card_body_div">
+            {% csrf_token %}
+            {% if form.errors %}
+              <div class="alert alert-warning" role="alert">
+                {{form.errors}}
+              </div>
+            {% endif %}
+            <h3 class="title">Sign Up</h3>
+            <div class="login_inputs_div">
+                <input type="text" placeholder="Username" name="username" required/>
+            </div>
+                
+            <div class="login_inputs_div">
+                <input type="email" placeholder="Enter Email Address" name="email" required/>
+            </div>
+            <div class="login_inputs_div">
+                <input type="password" placeholder="Enter Password" name="password1" required/> 
+            </div>
+            <div class="login_inputs_div">
+                <input type="password" placeholder="Confirm Password" name="password2" required/> 
+            </div>
+            <div class="login_btn_div">
+                <button type="submit">Sign Up</button>
+            </div>
+            <hr>
+            <div class="login_last_text_div">
+                <a href="{% url 'signin' %}">Already! Have an Account!</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}

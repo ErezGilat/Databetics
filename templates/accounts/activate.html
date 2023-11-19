@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Hi {{user.username}}
+
+Please use the link below to activate your account.
+
+http://{{domain}}{% url 'account-activation' username=username token=token %}
+
+{% endautoescape %}

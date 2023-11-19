@@ -1,0 +1,11 @@
+{% if messages %}
+    {% for message in messages %}
+        <script type=text/javascript>
+            swal.fire({
+                title: '{{ message.tags | title }}!',
+                html: '{{ message }}',
+                icon: '{{ message.tags }}',
+            })
+        </script>
+    {% endfor %}
+{% endif %}

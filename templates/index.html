@@ -1,0 +1,64 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Dashboard{% endblock title %}
+{% block content %}
+
+
+    <div id="wrapper">
+        {% include 'includes/sidebar.html' %}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!-- Topbar -->
+                {% include 'includes/header.html' %}
+                <div class="content_section">
+                    <div class="container-fluid">
+                      <div class="content_title_div">
+                        <h2>Dashboard</h2>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="das1_card_body_div" id="card1">
+                                <div class="dash1_card_text_div">
+                                    <h6>INVOICES PENDING PRODUCT MATCHING</h6>
+                                    <p>10</p>
+                                </div>
+                                <div class="dash1_card_icon_div">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="das1_card_body_div" id="card2">
+                                <div class="dash1_card_text_div">
+                                    <h6>INVOICES PENDING PRODUCT MATCHING</h6>
+                                    <p>13</p>
+                                </div>
+                                <div class="dash1_card_icon_div">
+                                    <i class="fas fa-truck-pickup"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="das1_card_body_div" id="card3">
+                                <div class="dash1_card_text_div">
+                                    <h6>INVOICES PENDING PRODUCT MATCHING</h6>
+                                    <p>18</p>
+                                </div>
+                                <div class="dash1_card_icon_div">
+                                    <i class="jss6 fas fa-ship" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="footer_text_div">
+                        <small>Copyright © Inventry ERP {% now 'Y' %}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+
+{% endblock content %}

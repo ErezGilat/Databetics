@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Forgot Password{% endblock title %}
+{% block content %}
+
+<section class="login_section">
+    <div class="container">
+        <form method="post" class="login_card_body_div">
+            <h3 class="title">Forgot Password</h3>
+            {% csrf_token %}
+              {% if form.errors %}
+                <div class="alert alert-warning" role="alert">
+                  {{form.errors}}
+                </div>
+              {% endif %}
+            <div class="login_inputs_div">
+                <input type="email" name="email" placeholder="Enter Your Email" required/>
+            </div>
+            <div class="login_btn_div">
+                <button type="submit">Submit</button>
+            </div>
+            <hr>
+            <div class="login_last_text_div pb-3">
+                <a href="{% url 'signup' %}">Don't have an Account?</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock content %}

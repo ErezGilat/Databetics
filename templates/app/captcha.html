@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Captcha{% endblock title %}
+{% block content %}
+<section class="login_section mt-5">
+    <div class="container">
+        <form method="POST" class="login_card_body_div">
+            {% csrf_token %}
+            <div class="g-recaptcha" data-sitekey="6LcweJ0iAAAAAO64dqhoMGMJuecGtAjPz-yun5Go"></div>
+            <br/>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</section>
+{% endblock content %}
+{% block js %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock js %}

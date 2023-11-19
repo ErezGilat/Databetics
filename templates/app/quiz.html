@@ -1,0 +1,616 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}Quiz{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<style>
+    .input_range{
+        border: 1px solid gray;
+        display: flex;
+        gap: 7px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock css %}
+
+
+{% block content %}
+<section class="">
+  <div class="container-fluid">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>1 <i class="bi bi-arrow-right-short"></i></span>
+                    Do you have high blood pressure?</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="HighBP">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="HighBP">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>2 <i class="bi bi-arrow-right-short"></i></span>
+                    And what about high Cholesterol?</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="HighChol">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="HighChol">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>3 <i class="bi bi-arrow-right-short"></i></span>
+                    Did you go under Cholesterol check in the last 5 years?</h5>
+                        <div class="quiz_card_div">
+                            <div class="quiz_questions" data-selected="1" data-question="CholCheck">
+                                <span>A</span>
+                                <p>Yes, Cholestrol Check in 5 Years</p>
+                            </div>
+                            <div class="quiz_questions" data-selected="0" data-question="CholCheck">
+                                <span>B</span>
+                                <p>No, Cholestrol Check in 5 Years</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>4 <i class="bi bi-arrow-right-short"></i></span>
+                       Body Mass Index?</h5>
+                    <div class="quiz_card_div">
+                        <div class="pe-5 mt-3" id="BMI" data-selected="0" data-question="BMI">
+                            <input type="number" class="form-control" placeholder="Weight (kg)" id="bmi-weight" min="0">
+                        </div>
+                        <div class="pe-5 mt-3" id="BMI" data-selected="0" data-question="BMI">
+                            <input type="number" class="form-control" placeholder="Height (m)" id="bmi-height" min="0">
+                        </div>
+                        <div class="bodymass_output pe-5 mt-3" id="BMI" data-selected="0" data-question="BMI">
+                            <button id="bmi" style="border: 1px solid rgb(158, 159, 162);border-radius: 5px; padding: 7px 10px;width: 100%;max-width: 250px;">0.0</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>5 <i class="bi bi-arrow-right-short"></i></span>
+                    Smoker (Have you smoked at least 100 cigarettes in your entire life)?</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="Smoker">
+                            <span>A</span>
+                            <p> Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="Smoker">
+                            <span>B</span>
+                            <p> No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>6 <i class="bi bi-arrow-right-short"></i></span>
+                    Did you have stroke?</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="Stroke">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="Stroke">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>7 <i class="bi bi-arrow-right-short"></i></span>
+                    Did you have heart disease or heart attack, coronary heart disease (CHD) or myocardial infarction (MI)?
+                    </h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="HeartDiseaseorAttack">
+                            <span>A</span>
+                            <p> Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="HeartDiseaseorAttack">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>8 <i class="bi bi-arrow-right-short"></i></span>
+                    Any physical activity in the past 30 days (not including job)?
+                    </h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="PhysActivity">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="PhysActivity">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>9 <i class="bi bi-arrow-right-short"></i></span>
+                    Do you eat fruits? (Consume one fruit or more a day)
+                    </h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="Fruits">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="Fruits">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>10 <i class="bi bi-arrow-right-short"></i></span>
+                    And veggies? (Consume one vegetable or more a day)
+                    </h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="Veggies">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="Veggies">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>11 <i class="bi bi-arrow-right-short"></i></span>
+                    Are you an adult man having more than 14 drinks per week or adult women having more than 7 drinks per week?
+                    </h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="HvyAlcoholConsump">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="HvyAlcoholConsump">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>12 <i class="bi bi-arrow-right-short"></i></span>
+                        Do you have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc.</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="AnyHealthcare">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="AnyHealthcare">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>13 <i class="bi bi-arrow-right-short"></i></span>
+                     Ever needed to go to a doctor but couldn’t because of cost?</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="NoDocbcCost">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="NoDocbcCost">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>14 <i class="bi bi-arrow-right-short"></i></span>
+                        How would you rate your general health?</h5>
+                      <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="GenHlth">
+                            <span>A</span>
+                            <p>Exellent</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="2" data-question="GenHlth">
+                            <span>B</span>
+                            <p>Very Good</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="3" data-question="GenHlth">
+                            <span>C</span>
+                            <p>Good</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="4" data-question="GenHlth">
+                            <span>D</span>
+                            <p>Fair</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="5" data-question="GenHlth">
+                            <span>E</span>
+                            <p>Poor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>15 <i class="bi bi-arrow-right-short"></i></span>
+                     And your Mental health in scale of 1(poor) to 30(excellent)?
+                    </h5>
+                    <div class="quiz_card_div">
+                        <div class="input_range rangeUpdate" data-question="MentHlth">
+                            <input class="w-100" type="range" id="Mental" name="Mental" min="0" max="30" value="0"
+                            oninput="amount.value=Mental.value;">
+                            <output id="amount" name="amount" for="Mental">0</output>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>16 <i class="bi bi-arrow-right-short"></i></span>
+                    And what about your physical health in scale of 1(poor) to 30(excellent)?</h5>
+                    <div class="quiz_card_div">
+                        <div class="input_range rangeUpdate" data-question="PhysHlth">
+                            <input class="w-100" type="range" id="Physical" name="Physical" min="0" max="30" value="0"
+                            oninput="phyamount.value=Physical.value">
+                            <output id="phyamount" name="phyamount" for="Physical">0</output>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>17 <i class="bi bi-arrow-right-short"></i></span>
+                     Do you have serious difficulties to walk or climb stairs?
+                    </h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="DiffWalk">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="DiffWalk">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>18 <i class="bi bi-arrow-right-short"></i></span>
+                     What’s your sex?</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="Sex">
+                            <span>A</span>
+                            <p>Male</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="Sex">
+                            <span>B</span>
+                            <p>Female</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>19 <i class="bi bi-arrow-right-short"></i></span>
+                    In which range is your age? </h5>
+                    <div class="quiz_card_div">
+                        <div class="d-flex gap-2 w-100">
+                            <div class="quiz_questions" data-selected="1" data-question="Age">
+                                <span>A</span>
+                                <p>Age 18 to 24</p>
+                            </div>
+                            <div class="quiz_questions" data-selected="2" data-question="Age">
+                                <span>B</span>
+                                <p>Age 25 to 29</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2 w-100">
+                            <div class="quiz_questions" data-selected="3" data-question="Age">
+                                <span>C</span>
+                                <p>Age 30 to 34</p>
+                              </div>
+                            <div class="quiz_questions" data-selected="4" data-question="Age">
+                              <span>D</span>
+                              <p>Age 35 to 39</p>
+                            </div>
+                        </div>
+                      <div class="d-flex gap-2 w-100">
+                        <div class="quiz_questions" data-selected="5" data-question="Age">
+                            <span>E</span>
+                            <p>Age 40 to 44</p>
+                          </div>
+                          <div class="quiz_questions" data-selected="6" data-question="Age">
+                            <span>F</span>
+                            <p>Age 45 to 49</p>
+                          </div>
+                      </div>
+                      <div class="d-flex gap-2 w-100">
+                        <div class="quiz_questions" data-selected="7" data-question="Age">
+                            <span>G</span>
+                            <p>Age 50 to 54</p>
+                          </div>
+                          <div class="quiz_questions" data-selected="8" data-question="Age">
+                            <span>H</span>
+                            <p>Age 55 to 59</p>
+                          </div>
+                      </div>
+                      <div class="d-flex gap-2 w-100">
+                        <div class="quiz_questions" data-selected="9" data-question="Age">
+                            <span>I</span>
+                            <p>Age 60 to 64</p>
+                          </div>
+                          <div class="quiz_questions" data-selected="10" data-question="Age">
+                            <span>J</span>
+                            <p>Age 65 to 69</p>
+                          </div>
+                      </div>
+                      <div class="d-flex gap-2 w-100">
+                        <div class="quiz_questions" data-selected="11" data-question="Age">
+                            <span>K</span>
+                            <p>Age 70 to 74</p>
+                          </div>
+                          <div class="quiz_questions" data-selected="12" data-question="Age">
+                            <span>L</span>
+                            <p>Age 75 to 79</p>
+                          </div>
+                      </div>
+                      <div class="quiz_questions" data-selected="13" data-question="Age">
+                        <span>M</span>
+                        <p>Age 80 or older</p>
+                      </div>
+                </div>
+            </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>20 <i class="bi bi-arrow-right-short"></i></span>
+                      What's your education level?</h5>
+                    <div class="quiz_card_div">
+                      <div class="quiz_questions" data-selected="1" data-question="Education">
+                          <span>A</span>
+                          <p>Never attended school or only kindergarten</p>
+                      </div>
+                      <div class="quiz_questions" data-selected="2" data-question="Education">
+                          <span>B</span>
+                          <p>Grades 1 through 8</p>
+                      </div>
+                      <div class="quiz_questions" data-selected="3" data-question="Education">
+                        <span>C</span>
+                        <p>Grades 9 through 11</p>
+                    </div>
+                    <div class="quiz_questions" data-selected="4" data-question="Education">
+                        <span>D</span>
+                        <p>Grade 12 or GED</p>
+                    </div>
+                        <div class="quiz_questions" data-selected="4" data-question="Education">
+                        <span>E</span>
+                        <p>College 1 to 3 years</p>
+                    </div>
+                        <div class="quiz_questions" data-selected="4" data-question="Education">
+                        <span>F</span>
+                        <p>College 4+ years(Graduate)</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>21 <i class="bi bi-arrow-right-short"></i></span>
+                     What’s your income range?</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="Income">
+                            <span>A</span>
+                            <p>Less than $10,000</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="2" data-question="Income">
+                            <span>B</span>
+                            <p>$10,000 to less than $15,000</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="3" data-question="Income">
+                            <span>C</span>
+                            <p>$15,000 to less than $25,000</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="4" data-question="Income">
+                            <span>D</span>
+                            <p>$25,000 to less than $35,000</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="5" data-question="Income">
+                            <span>E</span>
+                            <p>$35,000 or less than $50,000</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="6" data-question="Income">
+                            <span>F</span>
+                            <p>$50,000 or less than $75,000</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="7" data-question="Income">
+                            <span>G</span>
+                            <p>$75,000 or more</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="quiz_question_main_div">
+                    <h5><span>22 <i class="bi bi-arrow-right-short"></i></span>
+                        Are you already diagnosed with diabetes?</h5>
+                    <div class="quiz_card_div">
+                        <div class="quiz_questions" data-selected="1" data-question="22">
+                            <span>A</span>
+                            <p>Yes</p>
+                        </div>
+                        <div class="quiz_questions" data-selected="0" data-question="22">
+                            <span>B</span>
+                            <p>No</p>
+                        </div>
+                        <div class="last_quiz_btn_div">
+                            <button id='submit' type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <!-- All the questions are above -->
+    <div class="swiper_next_prev_btn_div">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    height = document.getElementById("bmi-height")
+    weight = document.getElementById("bmi-weight")
+    var dict = new Object({'HighBP': '0', 'HighChol': '0', 'CholCheck': '0', 'BMI': '0', 'Smoker': '0', 'Stroke': '0', 'HeartDiseaseorAttack': '0', 'PhysActivity': '0', 'Fruits': '0', 'Veggies': '0', 'HvyAlcoholConsump': '0', 'AnyHealthcare': '0', 'NoDocbcCost': '0', 'GenHlth': '0', 'MentHlth': '0', 'PhysHlth': '0', 'DiffWalk': '0', 'Sex': '0', 'Age': '0', 'Education': '0', 'Income': '0', '22': '0'})
+    $('.rangeUpdate').on('change', function(){
+        var t = $(this)
+        const question = t.attr('data-question')
+        const answer = t.children('input').val()
+        dict[question] = answer
+        console.log(dict)
+    })
+    function update(value1, value2){
+        if (value1 == 0 && value2 == 0){
+            document.getElementById("bmi").innerText = 0
+            dict['BMI'] = 0
+        }else if(value1==0){
+            document.getElementById("bmi").innerText = value2
+            dict['BMI'] = 0
+        }else if(value2==0){
+            document.getElementById("bmi").innerText = value1
+            dict['BMI'] = 0
+        }
+        else{
+            BMI = value1/(value2**2)
+            document.getElementById("bmi").innerText = BMI
+            dict['BMI'] = BMI
+        }
+    }
+
+    height_value = 0; weight_value = 0;
+    weight.addEventListener("input", (e)=>{
+        weight_value = e.target.value != "" ? e.target.value : 0
+        update(weight_value, height_value)
+    })
+
+    height.addEventListener("input",(e)=>{
+        height_value = e.target.value != "" ? e.target.value : 0
+        update(weight_value, height_value)
+    })
+
+    var swiper = new Swiper(".mySwiper", {
+        direction: "vertical",
+        slidesPerView: 1,
+        spaceBetween: 30,
+        mousewheel: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
+    // var list = new Array({'HighBP': '0'}, {'HighChol': '0'}, {'CholCheck': '0'}, {'BMI': '0'}, {'Smoker': '0'}, {'Stroke': '0'}, {'HeartDiseaseorAttack': '0'}, {'PhysActivity': '0'}, {'Fruits': '0'}, {'Veggies': '0'}, {'HvyAlcoholConsump': '0'}, {'AnyHealthcare': '0'}, {'NoDocbsCost': '0'}, {'GenHlth': '0'}, {'MentHlth': '0'}, {'PhysHlth': '0'}, {'DiffWalk': '0'}, {'Sex': '0'}, {'Age': '0'}, {'Education': '0'}, {'Income': '0'}, {'22': '0'})
+    $('.quiz_questions').on('click', function () {
+        const t = $(this)
+        t.parent().find('.quiz_questions > .bi-check2').remove()
+        t.parent().find('.quiz_questions').removeClass('div_border')
+        t.addClass('div_border')
+        t.append('<i class="bi bi-check2"></i>')
+        const question = t.attr('data-question')
+        var answer = 0
+        if(question == 'BMI'){
+            const val = t.children('input').val()
+            answer = val !== '' ? val : 0
+        }else{
+            answer = t.attr('data-selected')
+        }
+        dict[question] = answer
+        console.log(dict)
+    })
+
+    $('#submit').on('click', function(){
+        Toastify({
+            text: "Sending Request...",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+        const TOKEN = '{{ csrf_token }}';
+        const formData = new FormData()
+        formData.append('data', JSON.stringify(dict))
+        $.ajax({
+            url: "{% url 'quiz_result' %}",
+            type: 'POST',
+            data: formData,
+            headers: { 'X-CSRFToken': TOKEN },
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                const rst = response.results
+                swal.fire({
+                    title: `Results`,
+                    text: rst,
+                    icon: "info",
+                })
+                },
+            failure: function () {
+            swal.fire({
+                title: `Failure`,
+                text: "Something Went Wrong Please Try Again Later!",
+                icon: "error",
+                })
+            }
+        })
+    })
+</script>
+{% endblock js %}

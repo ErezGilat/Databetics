@@ -1,0 +1,93 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block css %}
+{% endblock css %}
+{% block content %}
+
+
+<section class="home_section_one">
+    <div class="container mng_container">
+       <!--<div class="home_sec1_title_main">
+            <div class="home_sec1_title_div" data-aos="fade-up">
+                <a href="#">HEALTH INFO <span>/</span></a>
+                <a href="#">DIABETES (DIABETES MELLITUS) <span>/</span></a>
+                <a href="#">FEATURES</a>
+            </div>
+            <div class="home_sec1_title_icons_div" data-aos="fade-up">
+                <a href="#"><span><i class="bi bi-star"></i> Save</span></a>
+                <a href="#"><span><i class="bi bi-printer"></i> Print</span></a>
+                <a href="#"><i class="bi bi-three-dots-vertical"></i>
+                Action</span></a>
+            </div>
+        </div>-->
+    </div>
+</section>
+
+<section class="home_section_two">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="home_sec2_title_div" data-aos="fade-down">
+                    <h1>Diabetes Test</h1>
+                    <img src="{% static 'img/home1_new.jpg' %}" alt="" data-aos="flip-down">
+                </div>
+                <div class="home_sec2_profile_div" data-aos="fade-down">
+                    <img src="{% static 'img/profile.jpg' %}" alt="">
+                    <div>
+                        <h5>Authored by <a href="#"> Gillian Harvey</a></h5>
+                        <h5>Reviewed by <a href="#"> Dr Sarah Jarvis MBE</a>
+                        </h5>
+                    </div>
+                </div>
+                <div class="home_sec2_text_div">
+                    <h5>Diabetes is a manageable condition, but left untreated
+                        it
+                        can cause serious harm. Try our quiz to see whether you
+                        are showing any of the tell-tale signs.</h5>
+                </div>
+                <div class="home_sec2_quiz_div" data-aos="flip-up">
+                    <label>QUIZ</label>
+                    <div class="home_sec2_quiz_text_div">
+                        <h1>How do I know if I have diabetes?</h1>
+                        <p>Work through a series of simple questions designed to
+                            deduce whether you're <br> showing the common
+                            symptoms of diabetes.</p>
+                        <a href="{% url 'quiz' %}"> <button type="button">Take The
+                                Test</button></a>
+                    </div>
+                </div>
+                <div class="home_sec2_last_detail_text" data-aos="fade-up">
+                    <p>Can't see the quiz? <a href="{% url 'quiz' %}">Click here to take it
+                            now.</a></p>
+                    <p>Diabetes is on the rise, with 4.6 million adults
+                        currently diagnosed with the condition in the UK alone,
+                        according to Diabetes UK. Around 10% of sufferers have
+                        <a href="#">type 1 Diabetes</a> - an autoimmune
+                        condition in which the body stops producing insulin.
+                        However, 90% of cases are <a href="#">type 2
+                            Diabetes</a> , usually caused by poor diet and
+                        lifestyle choices (although family history and ethnicity
+                        can also increase your risk).</p>
+                    <h1>Who is this quiz for?</h1>
+                    <p>If you're concerned that you might be experiencing some
+                        of the symptoms of diabetes, or know that you may be at
+                        risk of the condition, this quiz should help you
+                        discover whether you are exhibiting some of the symptoms
+                        and evaluate your risk. If you suspect you may have or
+                        may be developing diabetes, it's important to <a
+                            href="#">get a check-up</a> as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+
+{% block js %}
+<script>
+    AOS.init();
+</script>
+{% endblock js %}
